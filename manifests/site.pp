@@ -33,7 +33,7 @@ node default {
   # Example:
   #   class { 'my_class': }
 
-  include 'profile::base'
+  # include 'profile::base'
 
   unless $trusted['extensions']['pp_role'] == undef {
     contain $trusted['extensions']['pp_role']
