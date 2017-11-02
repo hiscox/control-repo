@@ -1,5 +1,5 @@
 # Puppet master installer
-class profiles::puppetserver::install {
+class profile::puppetserver::install {
 
   $package_source                    = '/tmp/puppet-enterprise-2017.3.0-el-7-x86_64.tar.gz'
   $package_source_url                = 'http://192.168.0.162/repo/pe_builds/puppet-enterprise-2017.3.0-el-7-x86_64.tar.gz'

@@ -1,4 +1,4 @@
 # Puppet master installer
-class profiles::puppetserver::service {
+class profile::puppetserver::service {
   # enable
 }

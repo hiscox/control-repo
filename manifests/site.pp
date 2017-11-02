@@ -32,5 +32,5 @@ node default {
   # Example:
   #   class { 'my_class': }
 
-  include 'profiles::base'
+  include 'profile::base'
 }
