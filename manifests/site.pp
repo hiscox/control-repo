@@ -34,4 +34,10 @@ node default {
   #   class { 'my_class': }
 
   include 'profile::base'
+
+  unless $trusted['extensions']['pp_role'] == undef {
+    contain $trusted['extensions']['pp_role']
+    Class[$trusted['extensions']['pp_role']]
+  }
+
 }
