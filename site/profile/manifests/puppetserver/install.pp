@@ -2,7 +2,7 @@
 class profile::puppetserver::install {
 
   $package_source                    = '/tmp/puppet-enterprise-2017.3.0-el-7-x86_64.tar.gz'
-  $package_source_url                = 'http://192.168.0.162/repo/pe_builds/puppet-enterprise-2017.3.0-el-7-x86_64.tar.gz'
+  $package_source_url                = 'https://s3.amazonaws.com/pe-builds/released/2017.3.1/puppet-enterprise-2017.3.1-el-7-x86_64.tar.gz'
   $stage_pe_installer_dir            = '/tmp/pe_installer'
   $package_name                      = 'pe-puppetserver'
   $service_name                      = 'pe-puppetserver'
