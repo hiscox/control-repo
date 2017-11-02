@@ -16,7 +16,6 @@ class profile::puppetserver::install {
   $r10k_proxy                        = 'http://proxy-northeurope.azure.hiscox.com:8080'
   $puppet_conf_file                  = '/etc/puppetlabs/puppet/puppet.conf'
   $hiera_config                      = '/etc/puppetlabs/code/environments/production/hiera.yaml'
-  $accept_tcp_ports                  = ['8140','443','61613','8142','4433']
   $puppetserver_conf_file            = '/etc/puppetlabs/puppetserver/conf.d/puppetserver.conf'
   $ssldir_path                       = '/etc/puppetlabs/puppetserver/ssl'
   $config_file                       = '/tmp/pe_conf'
@@ -32,6 +31,8 @@ class profile::puppetserver::install {
       /opt/puppetlabs/bin/ruby <%= $set_console_admin_password_script %> $console_admin_password ;\
       chown pe-puppet:pe-puppet <%= $r10k_private_key %> ;\
       puppet module install npwalker-pe_code_manager_webhook ;\
+      puppet module install pltraining-rbac ;\
+      puppet module install abrader-gms ;\      
       chown -R pe-puppet:pe-puppet /etc/puppetlabs/code/ ;\
       puppet apply -e "include pe_code_manager_webhook::code_manager" ;\
       echo 'code_manager_mv_old_code=true' > /opt/puppetlabs/facter/facts.d/code_manager_mv_old_code.txt; puppet agent -t ;\
@@ -107,5 +108,16 @@ class profile::puppetserver::install {
     command     => 'echo staging_puppetserver=true > /opt/puppetlabs/facter/facts.d/staging_puppetserver.txt',
     refreshonly => true,
   }
+
+  # TODO: required for agents to specify their own puppet environmnet
+  # node_group { 'Agent-specified environment':
+  #   ensure               => 'present',
+  #   environment          => 'agent-specified',
+  #   override_environment => 'true',
+  #   parent               => 'Production environment',
+  #   rule                 => ['and', ['!=', ['fact', 'agent_specified_environment'], 'production']],
+  # }
+
+  # node_group { 'Agent-specified environment': ensure => 'present', environment => 'agent-specified', override_environment => 'true', parent => 'Production environment', rule => ['and', ['!=', ['fact', 'agent_specified_environment'], 'production']],}
 
 }
