@@ -24,21 +24,28 @@ class profile::puppetserver::install {
     #!/bin/bash
     console_admin_password=$1
     ( sleep 20 ;\ 
+      logger "$(date) Removing puppet agent..." ;\
       yum remove -y puppet ;\
+      logger "$(date) Removing certs: [/etc/puppetlabs/puppet/ssl] & [/etc/puppetlabs/puppetserver/ssl/ca/signed/$(hostname -f).pem]..." ;\
       rm -rf /etc/puppetlabs/puppet/ssl ;\
       rm -f /etc/puppetlabs/puppetserver/ssl/ca/signed/$(hostname -f).pem ;\
+      logger "$(date) Starting PE install with config: <%= $config_file %>" ;\
       <%= $stage_pe_installer_dir %>/puppet-enterprise-installer -c <%= $config_file %> ;\
+      logger "$(date) Setting PE console admin password..." ;\
       /opt/puppetlabs/bin/ruby <%= $set_console_admin_password_script %> $console_admin_password ;\
+      logger "$(date) Setting up code manager..." ;\
       chown pe-puppet:pe-puppet <%= $r10k_private_key %> ;\
       puppet module install npwalker-pe_code_manager_webhook ;\
       puppet module install pltraining-rbac ;\
       puppet module install abrader-gms ;\      
       chown -R pe-puppet:pe-puppet /etc/puppetlabs/code/ ;\
-      puppet apply -e "include pe_code_manager_webhook::code_manager" ;\
+      /opt/puppetlabs/bin/puppet apply -e "include pe_code_manager_webhook::code_manager" ;\
       echo 'code_manager_mv_old_code=true' > /opt/puppetlabs/facter/facts.d/code_manager_mv_old_code.txt; puppet agent -t ;\
       yum install -y jq ;\
       /usr/bin/jq '.token' <%= $r10k_token %> -r > <%= $r10k_token %>.raw ;\
+      logger "$(date) Executing: puppet-code deploy -all -wait -t <%= $r10k_token %>.raw..." ;\
       /opt/puppetlabs/bin/puppet-code deploy --all --wait -t <%= $r10k_token %>.raw ;\
+      logger "$(date) PE install & config now complete." ;\
     ) & 
     exit 0
   | EOF
