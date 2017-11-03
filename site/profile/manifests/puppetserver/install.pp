@@ -99,15 +99,6 @@ class profile::puppetserver::install {
     timeout => 6000,
   }
 
-  ini_setting { "ssldir in ${puppet_conf_file}":
-    ensure            => present,
-    path              => $puppet_conf_file,
-    section           => 'master',
-    setting           => 'ssldir',
-    key_val_separator => '=',
-    value             => $ssldir_path,
-  }
-
   # If we assume puppetserver has just been installed, we also assume this is a brand new puppetserver,
   # so we set a custom fact 'staging_puppetserver', used in 'roles::puppetserver' to stage new repos to git & setup r10k...
   exec { 'start_staging_puppetserver_on_next_puppet_run':
