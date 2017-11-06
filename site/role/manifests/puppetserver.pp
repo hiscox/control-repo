@@ -1,4 +1,9 @@
 # Puppet master role
 class role::puppetserver {
-  include 'profile::puppetserver::install'
+
+  contain profile::base
+  contain profile::puppetserver::install
+  Class ['profile::base']
+  -> Class['profile::puppetserver::install']
+
 }
