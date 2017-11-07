@@ -9,7 +9,6 @@ class profile::puppetserver::install {
   $service_name                      = 'pe-puppetserver'
   $puppet_master_host                = $::fqdn
   $console_admin_password            = 'puppet'
-  $set_console_admin_password_script = '/opt/puppetlabs/server/data/enterprise/modules/pe_install/files/set_console_admin_password.rb'
   $r10k_remote                       = 'git@github.com:hiscox/control-repo.git'
   $r10k_private_key                  = '/etc/puppetlabs/r10k/r10k_private_key.pem'
   $r10k_token                        = '/etc/puppetlabs/puppetserver/.puppetlabs/code_manager_service_user_token'
@@ -23,7 +22,7 @@ class profile::puppetserver::install {
   $install_pe_puppetserver_sh        = @(EOF)
     #!/bin/bash
     console_admin_password=$1
-    ( sleep 20 ;\ 
+    ( sleep 20 ;\
       logger "$(date) Removing puppet agent..." ;\
       yum remove -y puppet ;\
       logger "$(date) Removing certs: [/etc/puppetlabs/puppet/ssl] & [/etc/puppetlabs/puppetserver/ssl/ca/signed/$(hostname -f).pem]..." ;\
@@ -31,22 +30,20 @@ class profile::puppetserver::install {
       rm -f /etc/puppetlabs/puppetserver/ssl/ca/signed/$(hostname -f).pem ;\
       logger "$(date) Starting PE install with config: <%= $config_file %>" ;\
       <%= $stage_pe_installer_dir %>/puppet-enterprise-installer -c <%= $config_file %> ;\
-      logger "$(date) Setting PE console admin password..." ;\
-      /opt/puppetlabs/bin/ruby <%= $set_console_admin_password_script %> $console_admin_password ;\
       logger "$(date) Setting up code manager..." ;\
       chown pe-puppet:pe-puppet <%= $r10k_private_key %> ;\
-      puppet module install npwalker-pe_code_manager_webhook ;\
-      puppet module install pltraining-rbac ;\
-      puppet module install abrader-gms ;\      
+      http_proxy=<%= $r10k_proxy %> /opt/puppetlabs/bin/puppet module install npwalker-pe_code_manager_webhook ;\
       chown -R pe-puppet:pe-puppet /etc/puppetlabs/code/ ;\
       /opt/puppetlabs/bin/puppet apply -e "include pe_code_manager_webhook::code_manager" ;\
       echo 'code_manager_mv_old_code=true' > /opt/puppetlabs/facter/facts.d/code_manager_mv_old_code.txt; puppet agent -t ;\
-      yum install -y jq ;\
+      curl -sL https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 -o /tmp/jq
+      chmod +x /tmp/jq ;\
+      mv /tmp/jq /usr/bin/jq ;\
       /usr/bin/jq '.token' <%= $r10k_token %> -r > <%= $r10k_token %>.raw ;\
-      logger "$(date) Executing: puppet-code deploy -all -wait -t <%= $r10k_token %>.raw..." ;\
-      /opt/puppetlabs/bin/puppet-code deploy --all --wait -t <%= $r10k_token %>.raw ;\
+      logger "$(date) Executing: puppet-code deploy --all --wait --token-file=<%= $r10k_token %>.raw..." ;\
+      /opt/puppetlabs/bin/puppet-code deploy --all --wait --token-file=<%= $r10k_token %>.raw ;\
       logger "$(date) PE install & config now complete." ;\
-    ) & 
+    ) &
     exit 0
   | EOF
 
