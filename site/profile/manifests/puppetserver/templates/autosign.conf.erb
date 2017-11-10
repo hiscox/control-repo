@@ -1,0 +1,10 @@
+---
+general:
+  loglevel: warn
+  logfile: "/var/log/autosign.log"
+jwt_token:
+  secret: '<%= @autosign_jwt_secret %>'
+  validity: '7200'
+  journalfile: "/var/autosign/autosign.journal"
+password_list:
+  password: '<%= @autosign_password %>'

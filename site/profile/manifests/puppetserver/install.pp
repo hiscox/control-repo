@@ -92,6 +92,7 @@ class profile::puppetserver::install {
     unless  => '/usr/bin/rpm -q pe-puppetserver',
     notify  => [
       Exec['start_staging_puppetserver_on_next_puppet_run'],
+      Class['profile::puppetserver::autosign']
     ],
     timeout => 6000,
   }
