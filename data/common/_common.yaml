@@ -1,5 +1,5 @@
 ---
-  common_data::autosign_key: >
+  common_data::autosign_password: >
     ENC[PKCS7,MIIBiQYJKoZIhvcNAQcDoIIBejCCAXYCAQAxggEhMIIBHQIBADAFMAACAQEw
     DQYJKoZIhvcNAQEBBQAEggEAcArMFD7KOaGkYzIE0Qvv3lGtPpR8GwXuMjAq
     LNAo+ZI+SU6/YeV8N1hXd7ivI0v4o8c6l/WGRreXjL7rrtOzXbpXaZlFMXaF
