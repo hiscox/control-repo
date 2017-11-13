@@ -1,10 +1,16 @@
 # Puppet master autosign set up
 class profile::puppetserver::autosign {
+  $proxy_url = 'http://proxy-northeurope.azure.hiscox.com:8080'
+
   $dev_toolkit = [
     'ruby-devel',
     'gcc',
     'gcc-c++'
   ]
+
+  user { 'pe-puppet':
+    ensure => present,
+  }
 
   package { $dev_toolkit:
     ensure => present,
