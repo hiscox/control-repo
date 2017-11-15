@@ -1,18 +1,20 @@
 # Puppet master installer
 class profile::puppetserver::install {
 
+  #TODO: Expose
   $pe_version                        = '2017.3.1'
+  $console_admin_password            = 'puppet'
+  $r10k_remote                       = 'git@github.com:hiscox/control-repo.git'
+  $r10k_proxy                        = 'http://proxy-northeurope.azure.hiscox.com:8080'
+  #TODO: Expose
   $package_source                    = "/tmp/puppet-enterprise-${pe_version}-el-7-x86_64.tar.gz"
   $package_source_url                = "https://s3.amazonaws.com/pe-builds/released/${pe_version}/puppet-enterprise-${pe_version}-el-7-x86_64.tar.gz"
   $stage_pe_installer_dir            = '/tmp/pe_installer'
   $package_name                      = 'pe-puppetserver'
   $service_name                      = 'pe-puppetserver'
   $puppet_master_host                = $::fqdn
-  $console_admin_password            = 'puppet'
-  $r10k_remote                       = 'git@github.com:hiscox/control-repo.git'
-  $r10k_private_key                  = '/etc/puppetlabs/r10k/r10k_private_key.pem'
+  $r10k_private_key                  = '/etc/puppetlabs/puppetserver/ssh/id-control_repo.rsa'
   $r10k_token                        = '/etc/puppetlabs/puppetserver/.puppetlabs/code_manager_service_user_token'
-  $r10k_proxy                        = 'http://proxy-northeurope.azure.hiscox.com:8080'
   $puppet_conf_file                  = '/etc/puppetlabs/puppet/puppet.conf'
   $hiera_config                      = '/etc/puppetlabs/code/environments/production/hiera.yaml'
   $puppetserver_conf_file            = '/etc/puppetlabs/puppetserver/conf.d/puppetserver.conf'
@@ -68,6 +70,7 @@ class profile::puppetserver::install {
     creates         => '/tmp/pe_installer/puppet-enterprise-installer',
   }
 
+  # TODO: r10k_proxy is being set in r10k conf, but not in the console ui...
   $conf_content = @(EOF)
     {
     "console_admin_password": "<%= $console_admin_password %>",
