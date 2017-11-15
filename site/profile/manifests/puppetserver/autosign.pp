@@ -54,7 +54,9 @@ class profile::puppetserver::autosign {
 
   $ruby_version = split($facts['ruby']['version'], '.')
 
-  notify { "and this: ${ruby_version}": }
+  notify { "and this: ${ruby_version[0]}": }
+
+  notify { "and this: ${ruby_version[1]}": }
 
   # file { "/opt/puppetlabs/puppet/lib/ruby/gems/${ruby_version[0]}.${ruby_version[1]}.0/specifications":
   #   ensure => directory,
