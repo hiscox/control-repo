@@ -34,7 +34,7 @@ node default {
   #   class { 'my_class': }
 
   contain profile::base
-  Class['profile::base']
+  class { 'profile::base': }
 
   if $facts['az_metadata']['compute']['tags']['role'] == 'puppetserver' {
     contain role::puppetserver

@@ -2,6 +2,6 @@
 class role::puppetserver {
 
   contain profile::puppetserver
-  Class['profile::puppetserver']
+  class { 'profile::puppetserver': }
 
 }
