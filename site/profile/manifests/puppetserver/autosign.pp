@@ -52,11 +52,11 @@ class profile::puppetserver::autosign {
 
   notify { "check this out: ${facts['ruby']['version']}": }
 
-  $ruby_version = split($facts['ruby']['version'], '.')
+  $ruby_version = split($facts['ruby']['version'], '[.]')
 
   notify { "and this: ${ruby_version[0]}": }
 
-  notify { "and this: ${ruby_version[1]}": }
+  notify { "and that: ${ruby_version[1]}": }
 
   # file { "/opt/puppetlabs/puppet/lib/ruby/gems/${ruby_version[0]}.${ruby_version[1]}.0/specifications":
   #   ensure => directory,
