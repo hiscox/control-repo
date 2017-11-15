@@ -33,14 +33,17 @@ node default {
   # Example:
   #   class { 'my_class': }
 
-  unless $trusted['extensions']['pp_role'] == undef {
-    contain $trusted['extensions']['pp_role']
-    Class[$trusted['extensions']['pp_role']]
-  }
+  contain profile::base
+  Class['profile::base']
 
   if $facts['az_metadata']['compute']['tags']['role'] == 'puppetserver' {
     contain role::puppetserver
     Class['role::puppetserver']
+  } else {
+    unless $trusted['extensions']['pp_role'] == undef {
+      contain $trusted['extensions']['pp_role']
+      Class[$trusted['extensions']['pp_role']]
+    }
   }
 
 }

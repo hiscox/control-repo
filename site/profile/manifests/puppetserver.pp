@@ -1,8 +1,6 @@
-# Puppet master autosign set up
-class profile::puppetserver::autosign {
-  # TODO: expose
-  $proxy_url = 'http://proxy-northeurope.azure.hiscox.com:8080'
-  # TODO: expose
+# Puppet master set up
+class profile::puppetserver {
+  $proxy_url = lookup('common_data::proxy_url')
 
   $dev_toolkit = [
     'ruby-devel',
@@ -50,9 +48,10 @@ class profile::puppetserver::autosign {
     notify          => Exec['gemspec_permissions'],
   }
 
-  $ruby_version = split($facts['ruby']['version'], '[.]')
+  $ruby_version  = split($facts['ruby']['version'], '[.]')
+  $ruby_gems_dir = "${ruby_version[0]}.${ruby_version[1]}.0"
 
-  file { "/opt/puppetlabs/puppet/lib/ruby/gems/${ruby_version[0]}.${ruby_version[1]}.0/specifications":
+  file { "/opt/puppetlabs/puppet/lib/ruby/gems/${ruby_gems_dir}/specifications":
     ensure => directory,
     owner  => 'root',
     group  => 'root',
@@ -61,7 +60,7 @@ class profile::puppetserver::autosign {
 
   exec { 'gemspec_permissions':
     command     => 'chmod u=rw,go=r *.gemspec',
-    cwd         => "/opt/puppetlabs/puppet/lib/ruby/gems/${ruby_version[0]}.${ruby_version[1]}.0/specifications",
+    cwd         => "/opt/puppetlabs/puppet/lib/ruby/gems/${ruby_gems_dir}/specifications",
     path        => ['/usr/bin', '/usr/sbin',],
     refreshonly => true,
   }
