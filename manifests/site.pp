@@ -38,4 +38,9 @@ node default {
     Class[$trusted['extensions']['pp_role']]
   }
 
+  if $facts['az_metadata']['compute']['tags']['role'] == 'puppetserver' {
+    contain role::puppetserver
+    Class['role::puppetserver']
+  }
+
 }
