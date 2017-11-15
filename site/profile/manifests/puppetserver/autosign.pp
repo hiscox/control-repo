@@ -24,21 +24,21 @@ class profile::puppetserver::autosign {
     provider        => 'puppetserver_gem',
     install_options => [{'--http-proxy' => $proxy_url}],
     require         => Package[$dev_toolkit],
-    # # notify          => Exec['gemspec_permissions'],
+    notify          => Exec['gemspec_permissions'],
   }
 
   package { 'hiera-eyaml':
     ensure          => '2.1.0',
     provider        => 'puppetserver_gem',
     install_options => [{'--http-proxy' => $proxy_url}],
-    # notify          => Exec['gemspec_permissions'],
+    notify          => Exec['gemspec_permissions'],
   }
 
   package { 'hiera-http':
     ensure          => '2.0.0',
     provider        => 'puppetserver_gem',
     install_options => [{'--http-proxy' => $proxy_url}],
-    # notify          => Exec['gemspec_permissions'],
+    notify          => Exec['gemspec_permissions'],
   }
 
   package { 'rest-client_agent':
@@ -47,30 +47,24 @@ class profile::puppetserver::autosign {
     provider        => 'puppet_gem',
     install_options => [{'--http-proxy' => $proxy_url}],
     require         => Package[$dev_toolkit],
-    # notify          => Exec['gemspec_permissions'],
+    notify          => Exec['gemspec_permissions'],
   }
-
-  notify { "check this out: ${facts['ruby']['version']}": }
 
   $ruby_version = split($facts['ruby']['version'], '[.]')
 
-  notify { "and this: ${ruby_version[0]}": }
+  file { "/opt/puppetlabs/puppet/lib/ruby/gems/${ruby_version[0]}.${ruby_version[1]}.0/specifications":
+    ensure => directory,
+    owner  => 'root',
+    group  => 'root',
+    mode   => 'u=rwx,go=rx',
+  }
 
-  notify { "and that: ${ruby_version[1]}": }
-
-  # file { "/opt/puppetlabs/puppet/lib/ruby/gems/${ruby_version[0]}.${ruby_version[1]}.0/specifications":
-  #   ensure => directory,
-  #   owner  => 'root',
-  #   group  => 'root',
-  #   mode   => 'u=rwx,go=rx',
-  # }
-
-  # exec { 'gemspec_permissions':
-  #   command     => 'chmod u=rw,go=r *.gemspec',
-  #   cwd         => "/opt/puppetlabs/puppet/lib/ruby/gems/${ruby_version[0]}.${ruby_version[1]}.0/specifications",
-  #   path        => ['/usr/bin', '/usr/sbin',],
-  #   refreshonly => true,
-  # }
+  exec { 'gemspec_permissions':
+    command     => 'chmod u=rw,go=r *.gemspec',
+    cwd         => "/opt/puppetlabs/puppet/lib/ruby/gems/${ruby_version[0]}.${ruby_version[1]}.0/specifications",
+    path        => ['/usr/bin', '/usr/sbin',],
+    refreshonly => true,
+  }
 
   # Autosign config
   $autosign_password = lookup('common_data::autosign_password')
@@ -79,7 +73,7 @@ class profile::puppetserver::autosign {
     ensure          => '0.1.2',
     provider        => 'gem',
     install_options => [{'--http-proxy' => $proxy_url}],
-    # notify          => Exec['gemspec_permissions'],
+    notify          => Exec['gemspec_permissions'],
   }
   file { '/var/autosign':
     ensure => directory,
