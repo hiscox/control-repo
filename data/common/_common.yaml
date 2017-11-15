@@ -1,5 +1,5 @@
 ---
-  common_data::proxy_url: 'http://proxy-%{facts['az_metadata']['compute']['location']}.azure.hiscox.com:8080'
+  common_data::proxy_url: 'http://proxy-%{facts.az_metadata.compute.location}.azure.hiscox.com:8080'
   common_data::autosign_password: >
     ENC[PKCS7,MIIBiQYJKoZIhvcNAQcDoIIBejCCAXYCAQAxggEhMIIBHQIBADAFMAACAQEw
     DQYJKoZIhvcNAQEBBQAEggEAcArMFD7KOaGkYzIE0Qvv3lGtPpR8GwXuMjAq
