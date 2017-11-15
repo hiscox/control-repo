@@ -50,7 +50,7 @@ class profile::puppetserver::autosign {
     notify          => Exec['gemspec_permissions'],
   }
 
-  $ruby_version = split($facts['rubyversion'], '.')
+  $ruby_version = split($facts['ruby']['version'], '.')
 
   file { "/opt/puppetlabs/puppet/lib/ruby/gems/${ruby_version[0]}.${ruby_version[1]}.0/specifications":
     ensure => directory,
