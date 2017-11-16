@@ -40,8 +40,8 @@ node default {
     Class['role::puppetserver']
   } else {
     unless $trusted['extensions']['pp_role'] == undef {
-      contain $trusted['extensions']['pp_role']
-      Class[$trusted['extensions']['pp_role']]
+      contain "role::${trusted['extensions']['pp_role']}"
+      Class["role::${trusted['extensions']['pp_role']}"]
     }
   }
 
