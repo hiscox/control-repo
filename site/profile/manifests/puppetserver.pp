@@ -96,6 +96,7 @@ class profile::puppetserver {
     section => 'master',
     value   => '/usr/local/bin/autosign-validator',
     require => Package['autosign'],
+    notify  => Service['pe-puppetserver'],
   }
   # End
 }
