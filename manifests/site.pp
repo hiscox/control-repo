@@ -33,8 +33,8 @@ node default {
   # Example:
   #   class { 'my_class': }
 
-  class { 'profile::base': }
-  contain profile::base
+  class { 'hiscox_profile::base': }
+  contain hiscox_profile::base
 
   if $facts['az_metadata']['compute']['tags']['role'] == 'puppetserver' {
     contain role::puppetserver
