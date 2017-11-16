@@ -19,5 +19,5 @@ mod 'deepsecurityagent',
   :branch => 'master'
 
 mod 'profile_base',
-  :git    => 'https://github.com/deep-security/puppet.git',
+  :git    => 'ssh://git@bitbucket.org/hiscoxpsg/puppet-profile_base.git',
   :branch => 'master'
