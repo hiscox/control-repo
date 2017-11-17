@@ -5,6 +5,7 @@ mod 'puppetlabs-firewall', '1.10.0'
 mod 'puppetlabs-inifile', '2.0.0'
 mod 'puppetlabs-puppetserver_gem', '1.0.0'
 mod 'puppetlabs-registry', '1.1.4'
+mod 'puppetlabs-reboot', '1.2.1'
 mod 'puppet-archive', '2.1.0'
 
 mod 'keirans-azuremetadata', '0.1.2'
