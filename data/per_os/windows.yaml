@@ -1,2 +1,2 @@
 ---
-  profile::base::timezone: GMT Standard Time
+  hiscox_profile::base::timezone: GMT Standard Time

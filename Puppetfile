@@ -14,14 +14,14 @@ mod 'saz-sudo', '4.2.0'
 mod 'herculesteam-augeasproviders_sysctl', '2.2.0'
 mod 'herculesteam-augeasproviders_core', '2.1.4'
 
+mod 'hiscox_profile',
+  :git    => 'ssh://git@bitbucket.org/hiscoxpsg/puppet-profile_base.git',
+  :branch => 'master'
+
 mod 'serverhardening_linux',
   :git => 'ssh://git@bitbucket.org/hiscoxpsg/puppet-serverhardening_linux.git',
   :tag => '0.1.1'
 
-mod 'deepsecurityagent',
-  :git    => 'https://github.com/deep-security/puppet.git',
-  :branch => 'master'
-
-mod 'hiscox_profile',
-  :git    => 'ssh://git@bitbucket.org/hiscoxpsg/puppet-profile_base.git',
-  :branch => 'master'
+mod 'mcafee_epo_agent',
+  :git => 'ssh://git@bitbucket.org/hiscoxpsg/hiscox-mcafee_epo_agent.git',
+  :tag => '0.1.0'
