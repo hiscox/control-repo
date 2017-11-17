@@ -8,9 +8,6 @@ defaults:
 hierarchy:
 - name: "Per-node data (eyaml version)"
     globs:
-      - "per_region/%{facts.az_metadata.compute.location}.yaml"
-      - "per_service/%{facts.az_metadata.compute.tags.service}.yaml"
-      - "per_role/%{facts.az_metadata.compute.tags.role}.yaml"
       - "per_os/%{facts.os.family}.yaml"
     lookup_key: eyaml_lookup_key
     options:
