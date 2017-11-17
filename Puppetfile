@@ -10,6 +10,8 @@ mod 'puppet-archive', '2.1.0'
 mod 'keirans-azuremetadata', '0.1.2'
 mod 'saz-timezone', '3.5.0'
 mod 'saz-sudo', '4.2.0'
+mod 'herculesteam-augeasproviders_sysctl', '2.2.0'
+mod 'herculesteam-augeasproviders_core', '2.1.4'
 
 mod 'serverhardening_linux',
   :git => 'ssh://git@bitbucket.org/hiscoxpsg/puppet-serverhardening_linux.git',
