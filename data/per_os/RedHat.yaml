@@ -1,5 +1,5 @@
 ---
-  hiscox_profile::redhat::timezone: Europe/London
+  hiscox_profile::base::timezone: Europe/London
 
   serverhardening_linux::sudo_purge_ignore:
     - omsagent
