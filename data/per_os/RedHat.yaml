@@ -1,0 +1,4 @@
+---
+  profile::base::timezone: Europe/London
+  serverhardening_linux::sudo_purge_ignore:
+    - omsagent
