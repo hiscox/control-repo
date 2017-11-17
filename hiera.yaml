@@ -6,7 +6,7 @@ defaults:
   data_hash: yaml_data
 
 hierarchy:
-- name: "Per-node data (eyaml version)"
+  - name: "Per-node data (eyaml version)"
     globs:
       - "per_os/%{facts.os.family}.yaml"
     lookup_key: eyaml_lookup_key
