@@ -9,8 +9,8 @@
   puppet_enterprise::profile::master::check_for_updates: false
   puppet_enterprise::profile::master::r10k_proxy: "%{lookup('common_data::proxy_url')}"
   
-  puppet_enterprise::puppetdb_port: 8081
-  # puppet_enterprise::profile::puppetdb::node_purge_ttl: 5d
+  puppet_enterprise::puppetdb_port: 8091
+  puppet_enterprise::profile::puppetdb::node_purge_ttl: 5d
   # puppet_enterprise::profile::puppetdb::whitelisted_certnames:
   #   - nodepurge
 
