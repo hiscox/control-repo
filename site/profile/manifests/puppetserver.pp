@@ -60,8 +60,8 @@ class profile::puppetserver {
     refreshonly => true,
   }
 
-  $autosign_password = lookup('common_data::autosign_password')
-  $autosign_jwt_secret = lookup('common_data::autosign_jwt_secret')
+  $autosign_password = lookup('puppet_data::autosign_password')
+  $autosign_jwt_secret = lookup('puppet_data::autosign_jwt_secret')
 
   package { 'autosign':
     ensure   => '0.1.2',
