@@ -6,7 +6,6 @@ mod 'puppetlabs-inifile', '2.0.0'
 mod 'puppetlabs-puppetserver_gem', '1.0.0'
 mod 'puppetlabs-registry', '1.1.4'
 mod 'puppetlabs-reboot', '1.2.1'
-mod 'puppetlabs-ruby', '1.0.0'
 mod 'puppet-archive', '2.1.0'
 
 mod 'keirans-azuremetadata', '0.1.2'
@@ -25,8 +24,4 @@ mod 'serverhardening_linux',
 
 mod 'mcafee_epo_agent',
   :git => 'ssh://git@bitbucket.org/hiscoxpsg/hiscox-mcafee_epo_agent.git',
-  :tag => '0.1.0'
-
-mod 'gemsource',
-  :git => 'ssh://git@github.com/hiscox/puppet-gemsource.git',
-  :tag => '0.4.0'
+  :tag => '0.1.1'
