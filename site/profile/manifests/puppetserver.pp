@@ -23,21 +23,21 @@ class profile::puppetserver {
     provider        => 'puppetserver_gem',
     install_options => [{'--http-proxy' => $proxy_url}],
     require         => Package[$dev_toolkit],
-    notify          => Class['hiscox_base::gemspec'],
+    notify          => Class['hiscox_profile::gemspec'],
   }
 
   package { 'hiera-eyaml':
     ensure          => '2.1.0',
     provider        => 'puppetserver_gem',
     install_options => [{'--http-proxy' => $proxy_url}],
-    notify          => Class['hiscox_base::gemspec'],
+    notify          => Class['hiscox_profile::gemspec'],
   }
 
   package { 'hiera-http':
     ensure          => '2.0.0',
     provider        => 'puppetserver_gem',
     install_options => [{'--http-proxy' => $proxy_url}],
-    notify          => Class['hiscox_base::gemspec'],
+    notify          => Class['hiscox_profile::gemspec'],
   }
 
   package { 'rest-client_agent':
@@ -46,7 +46,7 @@ class profile::puppetserver {
     provider        => 'puppet_gem',
     install_options => [{'--http-proxy' => $proxy_url}],
     require         => Package[$dev_toolkit],
-    notify          => Class['hiscox_base::gemspec'],
+    notify          => Class['hiscox_profile::gemspec'],
   }
 
   $autosign_password   = lookup('puppet_data::autosign_password')
@@ -56,7 +56,7 @@ class profile::puppetserver {
     ensure          => '0.1.2',
     provider        => 'gem',
     install_options => [{'--http-proxy' => $proxy_url}],
-    notify          => Class['hiscox_base::gemspec'],
+    notify          => Class['hiscox_profile::gemspec'],
   }
 
   file { '/var/autosign':
