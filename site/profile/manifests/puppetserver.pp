@@ -23,21 +23,21 @@ class profile::puppetserver {
     provider        => 'puppetserver_gem',
     install_options => [{'--http-proxy' => $proxy_url}],
     require         => Package[$dev_toolkit],
-    notify          => Exec['gemspec_permissions'],
+    notify          => Class['hiscox_base::gemspec'],
   }
 
   package { 'hiera-eyaml':
     ensure          => '2.1.0',
     provider        => 'puppetserver_gem',
     install_options => [{'--http-proxy' => $proxy_url}],
-    notify          => Exec['gemspec_permissions'],
+    notify          => Class['hiscox_base::gemspec'],
   }
 
   package { 'hiera-http':
     ensure          => '2.0.0',
     provider        => 'puppetserver_gem',
     install_options => [{'--http-proxy' => $proxy_url}],
-    notify          => Exec['gemspec_permissions'],
+    notify          => Class['hiscox_base::gemspec'],
   }
 
   package { 'rest-client_agent':
@@ -46,24 +46,7 @@ class profile::puppetserver {
     provider        => 'puppet_gem',
     install_options => [{'--http-proxy' => $proxy_url}],
     require         => Package[$dev_toolkit],
-    notify          => Exec['gemspec_permissions'],
-  }
-
-  $ruby_version  = split($facts['ruby']['version'], '[.]')
-  $ruby_gems_dir = "${ruby_version[0]}.${ruby_version[1]}.0"
-
-  file { "/opt/puppetlabs/puppet/lib/ruby/gems/${ruby_gems_dir}/specifications":
-    ensure => directory,
-    owner  => 'root',
-    group  => 'root',
-    mode   => 'u=rwx,go=rx',
-  }
-
-  exec { 'gemspec_permissions':
-    command     => 'chmod u=rw,go=r *.gemspec',
-    cwd         => "/opt/puppetlabs/puppet/lib/ruby/gems/${ruby_gems_dir}/specifications",
-    path        => ['/usr/bin', '/usr/sbin',],
-    refreshonly => true,
+    notify          => Class['hiscox_base::gemspec'],
   }
 
   $autosign_password   = lookup('puppet_data::autosign_password')
@@ -73,7 +56,7 @@ class profile::puppetserver {
     ensure          => '0.1.2',
     provider        => 'gem',
     install_options => [{'--http-proxy' => $proxy_url}],
-    notify          => Exec['gemspec_permissions'],
+    notify          => Class['hiscox_base::gemspec'],
   }
 
   file { '/var/autosign':
