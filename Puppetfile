@@ -20,8 +20,8 @@ mod 'herculesteam-augeasproviders_sysctl', '2.2.0'
 mod 'herculesteam-augeasproviders_core', '2.1.4'
 
 mod 'hiscox_profile',
-  :git    => 'ssh://git@bitbucket.org/hiscoxpsg/puppet-profile_base.git',
-  :branch => 'master'
+  :git => 'ssh://git@bitbucket.org/hiscoxpsg/puppet-profile_base.git',
+  :tag => '0.1.0'
 
 mod 'serverhardening_linux',
   :git => 'ssh://git@bitbucket.org/hiscoxpsg/puppet-serverhardening_linux.git',
@@ -37,4 +37,4 @@ mod 'windowsproxy',
 
 mod 'disks',
   :git => 'ssh://git@bitbucket.org/hiscoxpsg/puppet-disks.git',
-  :ref => '0.0.18'
+  :tag => '0.0.18'
