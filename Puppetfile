@@ -29,7 +29,7 @@ mod 'serverhardening_linux',
 
 mod 'mcafee_epo_agent',
   :git => 'ssh://git@bitbucket.org/hiscoxpsg/hiscox-mcafee_epo_agent.git',
-  :tag => '0.1.1'
+  :tag => '0.1.2'
 
 mod 'windowsproxy',
   :git => 'ssh://git@bitbucket.org/hiscoxpsg/puppet-windowsproxy.git',
