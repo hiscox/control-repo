@@ -1,2 +1,14 @@
 ---
   hiscox_profile::base::timezone: GMT Standard Time
+
+  windows_data::choco_user: svc_chocolatey
+  windows_data::choco_password: >
+    ENC[PKCS7,MIIBiQYJKoZIhvcNAQcDoIIBejCCAXYCAQAxggEhMIIBHQIBADAFMAACAQEw
+    DQYJKoZIhvcNAQEBBQAEggEARmiLjEoYol19jlip3ggnzmAhkpIPcWlIUXYc
+    0M+tyzemeMx+2XyYXw1Y6E+KMmsUyAHEYNrwjp6o7TKlp3v9wEz5OjIjw5NU
+    MwwbHwaIEmZbpIPFdD4OFaeeuxbD+y74crlIX4QhSKFBm9ordCBIG4/UzAAQ
+    1C9Sdem4qA/P8DMEA/1r/5jz2hgnVwYXUFfsFh+o1F9zvDfvBgzXMm4VBxGR
+    PC9A2CKAN06beF7wbMfxQ+sIz8o8uL2BdlTMZkSTxvS4i4Lai/jod4LQ6EYZ
+    ICQhZTyPsRYbwT6s86Ja0RClWBPurESRGVTEQiyBBQr6VEkoXytMQZsUI8Z5
+    hT2PZTBMBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBDyFXCVmY3oHS74HQLO
+    oDfigCDxO4NRBQ/3pEhrl2zfPOGlv37yu/6kfr7QoBAmk6WY4Q==]

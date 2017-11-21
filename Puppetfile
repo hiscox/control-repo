@@ -6,7 +6,12 @@ mod 'puppetlabs-inifile', '2.0.0'
 mod 'puppetlabs-puppetserver_gem', '1.0.0'
 mod 'puppetlabs-registry', '1.1.4'
 mod 'puppetlabs-reboot', '1.2.1'
+mod 'puppetlabs-acl', '2.0.1'
+mod 'puppetlabs-powershell', '2.1.2'
+mod 'puppetlabs-dsc', '1.4.0'
+mod 'puppetlabs-chocolatey', '3.0.0'
 mod 'puppet-archive', '2.1.0'
+mod 'puppet-windows_env', '3.0.0'
 
 mod 'keirans-azuremetadata', '0.1.2'
 mod 'saz-timezone', '3.5.0'
@@ -25,3 +30,11 @@ mod 'serverhardening_linux',
 mod 'mcafee_epo_agent',
   :git => 'ssh://git@bitbucket.org/hiscoxpsg/hiscox-mcafee_epo_agent.git',
   :tag => '0.1.1'
+
+mod 'windowsproxy',
+  :git => 'ssh://git@bitbucket.org/hiscoxpsg/puppet-windowsproxy.git',
+  :tag => '0.0.7'
+
+mod 'disks',
+  :git => 'ssh://git@bitbucket.org/hiscoxpsg/puppet-disks.git',
+  :ref => '0.0.18'
