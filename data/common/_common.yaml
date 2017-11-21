@@ -1,6 +1,8 @@
 ---
   common_data::proxy_url: 'http://proxy-%{facts.az_metadata.compute.location}.azure.hiscox.com:8080'
 
+  common_data::consul_cluster: no_consul
+
   # puppet_enterprise::profile::console::browser_ssl_cert: /opt/puppetlabs/server/data/console-services/certs/public-console.cert.pem
   # puppet_enterprise::profile::console::browser_ssl_private_key: /opt/puppetlabs/server/data/console-services/certs/public-console.private_key.pem
   puppet_enterprise::profile::console::display_local_time: true
