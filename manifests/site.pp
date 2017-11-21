@@ -37,12 +37,16 @@ node default {
   contain hiscox_profile::base
 
   if $facts['az_metadata']['compute']['tags']['role'] == 'puppetserver' {
+    class { 'role::puppetserver':
+      require => Class['hiscox_profile::base']
+    }
     contain role::puppetserver
-    Class['role::puppetserver']
   } else {
     unless $trusted['extensions']['pp_role'] == undef {
+      class { "role::${trusted['extensions']['pp_role']}":
+        require => Class['hiscox_profile::base']
+      }
       contain "role::${trusted['extensions']['pp_role']}"
-      Class["role::${trusted['extensions']['pp_role']}"]
     }
   }
 
