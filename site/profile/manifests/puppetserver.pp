@@ -3,17 +3,7 @@ class profile::puppetserver {
 
   $proxy_url = lookup('common_data::proxy_url')
 
-  $dev_toolkit = [
-    'ruby-devel',
-    'gcc',
-    'gcc-c++'
-  ]
-
   user { 'pe-puppet':
-    ensure => present,
-  }
-
-  package { $dev_toolkit:
     ensure => present,
   }
 
