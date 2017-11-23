@@ -21,7 +21,11 @@ mod 'herculesteam-augeasproviders_core', '2.1.4'
 
 mod 'hiscox_profile',
   :git => 'ssh://git@bitbucket.org/hiscoxpsg/puppet-profile_base.git',
-  :tag => '0.1.5'
+  :tag => '0.1.6'
+
+mod 'serverhardening_windows',
+  :git => 'ssh://git@bitbucket.org/hiscoxpsg/puppet-serverhardening_windows.git',
+  :tag => '1.2.0'
 
 mod 'serverhardening_linux',
   :git => 'ssh://git@bitbucket.org/hiscoxpsg/puppet-serverhardening_linux.git',
