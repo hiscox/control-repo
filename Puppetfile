@@ -13,11 +13,14 @@ mod 'puppetlabs-chocolatey', '3.0.0'
 mod 'puppet-archive', '2.1.0'
 mod 'puppet-windows_env', '3.0.0'
 
+mod 'npwalker-pe_code_manager_webhook', '2.0.1'
 mod 'keirans-azuremetadata', '0.1.2'
 mod 'saz-timezone', '3.5.0'
 mod 'saz-sudo', '4.2.0'
 mod 'herculesteam-augeasproviders_sysctl', '2.2.0'
 mod 'herculesteam-augeasproviders_core', '2.1.4'
+mod 'KyleAnderson-consul', '3.0.0'
+mod 'jonono-auditpol', '0.1.2'
 
 mod 'hiscox_profile',
   :git => 'ssh://git@bitbucket.org/hiscoxpsg/puppet-profile_base.git',
@@ -42,3 +45,7 @@ mod 'windowsproxy',
 mod 'disks',
   :git => 'ssh://git@bitbucket.org/hiscoxpsg/puppet-disks.git',
   :tag => '0.0.18'
+
+mod 'windowsconsul',
+  :git => 'ssh://git@bitbucket.org/hiscoxpsg/puppet-windowsconsul.git',
+  :tag => '0.0.11'
