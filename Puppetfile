@@ -45,7 +45,11 @@ mod 'windowsproxy',
 mod 'disks',
   :git => 'ssh://git@bitbucket.org/hiscoxpsg/puppet-disks.git',
   :tag => '0.0.18'
-
+  
 mod 'windowsconsul',
   :git => 'ssh://git@bitbucket.org/hiscoxpsg/puppet-windowsconsul.git',
   :tag => '0.0.11'
+
+mod 'local_security_policy',
+  :git => 'https://github.com/hiscox/local_security_policy.git',
+  :tag => '0.6.0'
